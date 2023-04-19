@@ -120,11 +120,9 @@ const PortofoliuPage: NextPage<IPortofoliuPage> = ({ PortofoliuPage }) => {
                   images?.data?.[0]
                 );
 
-                console.log(firstImageData);
-
                 return (
-                  <Grid item xs={12} md={6}>
-                    <Card key={slug}>
+                  <Grid item xs={12} md={6} key={slug}>
+                    <Card>
                       <CardActionArea
                         component={Link}
                         href={`/portofoliu/${slug}`}
