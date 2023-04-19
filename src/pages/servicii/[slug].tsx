@@ -1,6 +1,5 @@
 import LayoutWrapper from "@/components/reusable/Layout/LayoutWrapper";
 import client from "@/lib/apolloClient";
-import { getStrapiMedia } from "@/lib/media";
 import { gql } from "@apollo/client";
 import { Box, Breadcrumbs, Container, Typography, styled } from "@mui/material";
 import { NextPage } from "next/types";

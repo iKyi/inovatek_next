@@ -43,7 +43,7 @@ const BlogCard: React.FC<IBlogCard> = ({
     >
       <CardActionArea
         component={Link}
-        href={`/servicii/${slug}`}
+        href={`/blog/${slug}`}
         sx={{
           minHeight: "100%",
           flex: 1,

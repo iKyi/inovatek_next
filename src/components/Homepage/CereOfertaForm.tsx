@@ -44,8 +44,12 @@ const schema = yup
 
 interface ICereOfertaForm {
   inverted?: boolean;
+  hideTitle?: boolean;
 }
-const CereOfertaForm: React.FC<ICereOfertaForm> = ({ inverted }) => {
+const CereOfertaForm: React.FC<ICereOfertaForm> = ({
+  inverted,
+  hideTitle = false,
+}) => {
   const {
     handleSubmit: hookFormSubmit,
     control,
@@ -76,16 +80,19 @@ const CereOfertaForm: React.FC<ICereOfertaForm> = ({ inverted }) => {
       }}
     >
       <form onSubmit={hookFormSubmit(onSubmit)}>
-        <Typography
-          sx={{
-            fontSize: [28, 28, 38],
-            fontWeight: 600,
-            mb: [3, 3, 5],
-          }}
-          component="div"
-        >
-          Cere o oferta
-        </Typography>
+        {!hideTitle && (
+          <Typography
+            sx={{
+              fontSize: [28, 28, 38],
+              fontWeight: 600,
+              mb: [3, 3, 5],
+            }}
+            component="div"
+          >
+            Cere o oferta
+          </Typography>
+        )}
+
         <Stack spacing={2}>
           <Controller
             name={"name"}

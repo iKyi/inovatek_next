@@ -13,6 +13,10 @@ const headerMenu: IHeaderMenuEntry[] = [
     url: "/produse",
   },
   {
+    name: "Calculator Pret",
+    url: "/calculator",
+  },
+  {
     name: "Servicii",
     url: "/servicii",
   },
