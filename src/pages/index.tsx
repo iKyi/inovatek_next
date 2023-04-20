@@ -1,7 +1,10 @@
 import HomeAdvantageBox from "@/components/Homepage/HomeAdvantageBox";
+import HomeBlogBox from "@/components/Homepage/HomeBlogBox";
 import HomeDespreNoiBox from "@/components/Homepage/HomeDespreNoiBox";
 import HomeIntroBox from "@/components/Homepage/HomeIntroBox";
 import HomeOfertaBox from "@/components/Homepage/HomeOfertaBox";
+import HomeProduseBox from "@/components/Homepage/HomeProduseBox";
+import HomeServiciiBox from "@/components/Homepage/HomeServiciiBox";
 import LayoutWrapper from "@/components/reusable/Layout/LayoutWrapper";
 import client from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
@@ -14,6 +17,69 @@ const getHomepageData = async () => {
       fetchPolicy: "no-cache",
       query: gql`
         query getHomepageData {
+          produses {
+            data {
+              attributes {
+                nume
+                slug
+                descriere
+                images {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+              }
+            }
+          }
+          services(sort: "createdAt:desc", pagination: { limit: 3 }) {
+            data {
+              attributes {
+                name
+                icon {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+                slug
+                description
+                image {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+              }
+            }
+          }
+          blogPosts(sort: "createdAt:desc", pagination: { limit: 6 }) {
+            data {
+              attributes {
+                slug
+                description
+                image {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+                title
+              }
+            }
+          }
           homeAdvantageBox {
             data {
               attributes {
@@ -118,6 +184,9 @@ const getHomepageData = async () => {
       `,
     });
     const Data = {
+      blogPosts: resp?.data?.blogPosts?.data,
+      servicii: resp?.data?.services?.data,
+      produse: resp?.data?.produses?.data,
       homeDespreBox: resp.data.homeDespreBox.data.attributes,
       homeAdvantageBox: resp.data.homeAdvantageBox.data.attributes,
       homeIntroBox: resp.data.homeIntroBox.data.attributes,
@@ -132,14 +201,31 @@ const getHomepageData = async () => {
 const HomeIndexPage: NextPage<{ homeData: Record<any, any> }> = ({
   homeData,
 }) => {
-  const { seo, homeIntroBox, homeAdvantageBox, homeDespreBox } = homeData;
+  const {
+    seo,
+    homeIntroBox,
+    homeAdvantageBox,
+    homeDespreBox,
+    blogPosts,
+    servicii,
+    produse,
+  } = homeData;
 
   return (
     <LayoutWrapper seo={seo}>
       <Container disableGutters>
         <HomeIntroBox data={homeIntroBox} />
+        <HomeServiciiBox
+          servicii={servicii.map((item: any) => item.attributes ?? null)}
+        />
         <HomeAdvantageBox data={homeAdvantageBox} />
+        <HomeProduseBox
+          produseListing={produse.map((item: any) => item?.attributes ?? null)}
+        />
         <HomeDespreNoiBox data={homeDespreBox} />
+        <HomeBlogBox
+          blogPosts={blogPosts.map((item: any) => item.attributes ?? null)}
+        />
         <HomeOfertaBox />
       </Container>
     </LayoutWrapper>

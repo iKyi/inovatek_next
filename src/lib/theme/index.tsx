@@ -87,6 +87,9 @@ const getOverRides = (theme: Theme) => {
       },
       MuiCssBaseline: {
         styleOverrides: {
+          ":root": {
+            "--swiper-theme-color": `${theme.palette.primary.main} !important`,
+          },
           body: {
             height: "100%",
             display: "flex",
