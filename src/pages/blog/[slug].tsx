@@ -4,9 +4,11 @@ import MarkdownParser from "@/components/reusable/MarkdownParser";
 import client from "@/lib/apolloClient";
 import getStrapiFullImageData from "@/lib/getStrapiFullImageData";
 import { gql } from "@apollo/client";
-import { Box, Container } from "@mui/material";
+import { Box, Breadcrumbs, Container, styled } from "@mui/material";
 import { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const getPortfolioEntryData = async (slug: string) => {
   try {
@@ -47,6 +49,11 @@ const getPortfolioEntryData = async (slug: string) => {
   }
 };
 
+const StyledLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  textDecoration: "none",
+}));
+
 interface IBlogPage {
   blogPostData: {
     title: string;
@@ -60,6 +67,24 @@ const BlogPage: NextPage<IBlogPage> = ({ blogPostData }) => {
 
   const imageData = getStrapiFullImageData(image);
 
+  const breadCrumbs = [
+    <StyledLink key="homeLink" href="/">
+      Acasa
+    </StyledLink>,
+    <StyledLink key="parentLink" href="/blog">
+      Blog
+    </StyledLink>,
+    <Box
+      key="currentLink"
+      aria-disabled="true"
+      sx={{
+        textDecoration: "underline",
+      }}
+    >
+      {title}
+    </Box>,
+  ];
+
   return (
     <LayoutWrapper
       seo={{
@@ -69,6 +94,14 @@ const BlogPage: NextPage<IBlogPage> = ({ blogPostData }) => {
         shareImage: imageData?.url ?? "",
       }}
     >
+      <Container>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          {breadCrumbs}
+        </Breadcrumbs>
+      </Container>
       <Container>
         <PageHeader title={title} />
         {imageData && (

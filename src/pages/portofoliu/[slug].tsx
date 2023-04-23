@@ -9,13 +9,17 @@ import { gql } from "@apollo/client";
 import { ZoomIn } from "@mui/icons-material";
 import {
   Box,
+  Breadcrumbs,
   Container,
   Grid,
   IconButton,
   Link as MUILink,
 } from "@mui/material";
+import { styled } from "@mui/system";
 import { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const getPortfolioEntryData = async (slug: string) => {
   try {
@@ -59,11 +63,34 @@ const getPortfolioEntryData = async (slug: string) => {
 interface IPortofoliuPage {
   portofoliuData: Record<any, any>;
 }
+const StyledLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  textDecoration: "none",
+}));
+
 const PortofoliuPage: NextPage<IPortofoliuPage> = ({ portofoliuData }) => {
   const { name, description, images } = portofoliuData;
 
   const { data: imagesData } = images ?? {};
   const firstImageUrl = getStrapiMedia(images?.data?.[0]);
+
+  const breadCrumbs = [
+    <StyledLink key="homeLink" href="/">
+      Acasa
+    </StyledLink>,
+    <StyledLink key="parentLink" href="/portofoliu">
+      Portofoliu
+    </StyledLink>,
+    <Box
+      key="currentLink"
+      aria-disabled="true"
+      sx={{
+        textDecoration: "underline",
+      }}
+    >
+      {name}
+    </Box>,
+  ];
 
   return (
     <LayoutWrapper
@@ -74,6 +101,14 @@ const PortofoliuPage: NextPage<IPortofoliuPage> = ({ portofoliuData }) => {
         shareImage: firstImageUrl ?? "",
       }}
     >
+      <Container>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          {breadCrumbs}
+        </Breadcrumbs>
+      </Container>
       <Container>
         <PageHeader title={name} />
         <Box

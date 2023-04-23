@@ -180,7 +180,7 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
         >
           {selectedProducts.length > 0 ? (
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 400 }} aria-label="tabel calcule">
+              <Table sx={{ minWidth: 750 }} aria-label="tabel calcule">
                 <TableHead>
                   <TableRow>
                     <TableCell>Nume de referinta</TableCell>
