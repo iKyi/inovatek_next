@@ -119,9 +119,14 @@ const HomeDespreNoiBox: React.FC<IHomeDespreNoiBox> = ({ data }) => {
                             fontWeight: 600,
                           }}
                         >
-                          {box.sum}
+                          {box.sum}{" "}
+                          <small>
+                            &euro;/m<sup>2</sup>
+                          </small>
                         </Typography>
-                        <Typography component="div">{box.name}</Typography>
+                        <Typography component="div">
+                          <strong>{box.name}</strong>
+                        </Typography>
                       </Stack>
                     );
                   })}
@@ -137,7 +142,7 @@ const HomeDespreNoiBox: React.FC<IHomeDespreNoiBox> = ({ data }) => {
                     href={buttonUrl}
                     endIcon={<ArrowRightAltOutlined />}
                   >
-                    Afla mai multe
+                    Cât costă?
                   </Button>
                 )}
               </Box>

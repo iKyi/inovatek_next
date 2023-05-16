@@ -91,14 +91,14 @@ const Header: React.FC<IHeader> = () => {
           <Box>
             <Button
               variant="contained"
-              color="secondary"
+              color="primary"
               component={Link}
               href="/contact"
               sx={{
                 textTransform: "none",
               }}
             >
-              Contact
+              Vreau si eu!
             </Button>
             {isMobile && <MobileMenu />}
           </Box>

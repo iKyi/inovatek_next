@@ -51,23 +51,15 @@ const Footer: React.FC<IFooter> = () => {
                   priority
                 />
               </Link>
-              {footerText && (
-                <Box
-                  sx={{
-                    fontSize: "90%",
-                    mt: 2,
-                  }}
-                >
-                  <MarkdownParser>{footerText}</MarkdownParser>
-                </Box>
-              )}
             </Box>
           </Grid>
 
           {contactEntries && (
             <Grid xs={12} md={3} item>
               <Box>
-                <FooterTitle>Contacteaza-ne</FooterTitle>
+                <FooterTitle>
+                  <strong>Contactează-ne</strong>
+                </FooterTitle>
                 <Stack spacing={2} alignItems="flex-start">
                   {contactEntries.map((item: any) => {
                     let urlPreThing = "";
@@ -88,6 +80,7 @@ const Footer: React.FC<IFooter> = () => {
                         sx={{
                           color: "#fff",
                           textDecoration: "underline",
+                          textTransform: "none",
                         }}
                       >
                         {item.url}
@@ -98,9 +91,12 @@ const Footer: React.FC<IFooter> = () => {
               </Box>
             </Grid>
           )}
+
           <Grid xs={12} md={3} item>
             <Box>
-              <FooterTitle>Social media</FooterTitle>
+              <FooterTitle>
+                <strong>Social media</strong>
+              </FooterTitle>
               <Box
                 sx={{
                   display: "flex",
@@ -126,6 +122,24 @@ const Footer: React.FC<IFooter> = () => {
                   );
                 })}
               </Box>
+            </Box>
+          </Grid>
+
+          <Grid xs={12} md={3} item>
+            <Box>
+              <FooterTitle>
+                <strong>Misiunea noastră</strong>
+              </FooterTitle>
+              {footerText && (
+                <Box
+                  sx={{
+                    fontSize: "90%",
+                    mt: 2,
+                  }}
+                >
+                  <MarkdownParser>{footerText}</MarkdownParser>
+                </Box>
+              )}
             </Box>
           </Grid>
         </Grid>

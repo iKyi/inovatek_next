@@ -89,7 +89,7 @@ const CereOfertaForm: React.FC<ICereOfertaForm> = ({
             }}
             component="div"
           >
-            Solicita o oferta
+            Solicită o ofertă
           </Typography>
         )}
 

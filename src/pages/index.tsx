@@ -1,5 +1,5 @@
 import HomeAdvantageBox from "@/components/Homepage/HomeAdvantageBox";
-import HomeBlogBox from "@/components/Homepage/HomeBlogBox";
+// import HomeBlogBox from "@/components/Homepage/HomeBlogBox";
 import HomeDespreNoiBox from "@/components/Homepage/HomeDespreNoiBox";
 import HomeIntroBox from "@/components/Homepage/HomeIntroBox";
 import HomeOfertaBox from "@/components/Homepage/HomeOfertaBox";
@@ -223,9 +223,10 @@ const HomeIndexPage: NextPage<{ homeData: Record<any, any> }> = ({
           produseListing={produse.map((item: any) => item?.attributes ?? null)}
         />
         <HomeDespreNoiBox data={homeDespreBox} />
-        <HomeBlogBox
+        {/* AG: Hiding for the moment the blog posts box - no content for it now */}
+        {/* <HomeBlogBox
           blogPosts={blogPosts.map((item: any) => item.attributes ?? null)}
-        />
+        /> */}
         <HomeOfertaBox />
       </Container>
     </LayoutWrapper>

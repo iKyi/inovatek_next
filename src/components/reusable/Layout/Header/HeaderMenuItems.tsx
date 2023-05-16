@@ -38,7 +38,7 @@ const HeaderMenuItems: React.FC<IHeaderMenuItems> = ({ vertical = false }) => {
             sx={{
               textDecoration: active ? "underline!important" : "none!important",
               textTransform: "none",
-              fontWeight: 400,
+              fontWeight: 800,
             }}
           >
             {name}

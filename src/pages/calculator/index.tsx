@@ -72,7 +72,7 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
       id: nanoid(),
       type,
       name,
-      squareCm: 10,
+      squareCm: 1,
       localName: "",
     };
 
@@ -108,7 +108,7 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
     });
 
     return total;
-  }, [selectedProducts,products]);
+  }, [selectedProducts, products]);
 
   return (
     <LayoutWrapper seo={seo ?? {}}>
@@ -154,10 +154,10 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
                         {item.nume}
                       </Typography>
                       <Typography>
-                        Per cm patrat: {item.pricePerSquareCm} €
+                        Per m<sup>2</sup>: {item.pricePerSquareCm} €
                       </Typography>
                       <Typography>
-                        Per comutator: {item.pricePerElectricBox} €
+                        Per transformator: {item.pricePerElectricBox} €
                       </Typography>
                     </Box>
                     <Box
@@ -183,11 +183,15 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
               <Table sx={{ minWidth: 750 }} aria-label="tabel calcule">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Nume de referinta</TableCell>
-                    <TableCell>Marime cm2</TableCell>
+                    <TableCell>Referință</TableCell>
+                    <TableCell>
+                      Suprafață (m<sup>2</sup>)
+                    </TableCell>
                     <TableCell>Tip</TableCell>
-                    <TableCell>Pret cm2</TableCell>
-                    <TableCell>Pret commutator</TableCell>
+                    <TableCell>
+                      Preț/m<sup>2</sup>
+                    </TableCell>
+                    <TableCell>Preț transformator</TableCell>
                     <TableCell></TableCell>
                   </TableRow>
                 </TableHead>
@@ -252,7 +256,7 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
                           textAlign: "right",
                         }}
                       >
-                        Total: {totalPrice} €
+                        Total: {totalPrice}€
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -268,7 +272,7 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
               component={Card}
               elevation={2}
             >
-              <Typography>Adauga produse pentru a calcula</Typography>
+              <Typography>Adaugă produse pentru a calcula</Typography>
             </Box>
           )}
         </Box>
