@@ -154,6 +154,13 @@ const CereOfertaForm: React.FC<ICereOfertaForm> = ({
               Trimite
             </Button>
           </Box>
+          <Box>
+            <h3>
+              Vă rugăm să completați acest formular și un membru al echipei
+              Inovatek vă va contacta în scurt timp. <br />
+              Mulțumim.
+            </h3>
+          </Box>
         </Stack>
       </form>
     </Box>

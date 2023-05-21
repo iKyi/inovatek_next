@@ -51,7 +51,7 @@ const HomeAdvantageBox: React.FC<IHomeAdvantageBox> = ({ data }) => {
                   alt="advantage grpahic"
                   style={{
                     display: "inline-block",
-                    maxWidth: "100%",
+                    maxWidth: "80%",
                     height: "auto",
                   }}
                 />

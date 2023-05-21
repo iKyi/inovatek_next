@@ -134,7 +134,7 @@ const ServiciuPage: NextPage<IServiciuPage> = ({ serviceData }) => {
               width={mainImageData.width}
               alt={`main graphic for ${name}`}
               style={{
-                maxWidth: "100%",
+                maxWidth: "80%",
                 height: "auto",
               }}
             />
