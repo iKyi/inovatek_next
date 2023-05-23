@@ -1,3 +1,4 @@
+import CalculatorForm from "@/components/CalculatorPage/CalculatorForm";
 import LayoutWrapper from "@/components/reusable/Layout/LayoutWrapper";
 import PageHeader from "@/components/reusable/Layout/PageHeader";
 import MarkdownParser from "@/components/reusable/MarkdownParser";
@@ -275,6 +276,7 @@ const CalculatorPret: React.FC<ICalculatorPret> = ({ calculatorPageData }) => {
               <Typography>Adaugă produse pentru a calcula</Typography>
             </Box>
           )}
+          <CalculatorForm currentItems={selectedProducts} />
         </Box>
       </Container>
     </LayoutWrapper>
