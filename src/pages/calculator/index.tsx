@@ -53,7 +53,7 @@ interface ICalculatorPret {
   };
 }
 
-type IProductListingType = {
+export type IProductListingType = {
   id: string;
   type: string;
   name: string;

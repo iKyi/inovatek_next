@@ -16,98 +16,98 @@ const getGlobalData = async () => {
   try {
     const resp = await client.query({
       query: gql`
-      # Write your query or mutation here
-      query getGlobalData {
-                global {
+        # Write your query or mutation here
+        query getGlobalData {
+          global {
+            data {
+              attributes {
+                companyDetails
+                footerLinks {
+                  url
+                  id
+                  text
+                }
+                footerLegalLinks {
+                  url
+                  image {
+                    data {
+                      attributes {
+                        url
+                        height
+                        width
+                      }
+                    }
+                  }
+                  id
+                }
+                siteName
+                googleTagCode
+                messageSentText
+                favicon {
                   data {
                     attributes {
-                      companyDetails
-                      footerLinks {
+                      url
+                      width
+                      height
+                    }
+                  }
+                }
+                logoLight {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+                logoDark {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+                seo {
+                  metaTitle
+                  metaDescription
+                  shareImage {
+                    data {
+                      attributes {
                         url
-                        id
-                        text
-                      }
-                      footerLegalLinks {
-                        url
-                        image {
-                          data {
-                            attributes {
-                              url
-                              height
-                              width
-                            }
-                          }
-                        }
-                        id
-                      }
-                      siteName
-                      googleTagCode
-                      messageSentText
-                      favicon {
-                        data {
-                          attributes {
-                            url
-                            width
-                            height
-                          }
-                        }
-                      }
-                      logoLight {
-                        data {
-                          attributes {
-                            url
-                            height
-                            width
-                          }
-                        }
-                      }
-                      logoDark {
-                        data {
-                          attributes {
-                            url
-                            height
-                            width
-                          }
-                        }
-                      }
-                      seo {
-                        metaTitle
-                        metaDescription
-                        shareImage {
-                          data {
-                            attributes {
-                              url
-                              height
-                              width
-                            }
-                          }
-                        }
-                      }
-                      
-                      footerText
-                      contactBoxImage {
-                        data {
-                          attributes {
-                            url
-                            height
-                            width
-                          }
-                        }
-                      }
-                      socialEntries {
-                        type
-                        url
-                        id
-                      }
-                      contactEntries {
-                        type
-                        url
-                        id
+                        height
+                        width
                       }
                     }
                   }
                 }
+
+                footerText
+                contactBoxImage {
+                  data {
+                    attributes {
+                      url
+                      height
+                      width
+                    }
+                  }
+                }
+                socialEntries {
+                  type
+                  url
+                  id
+                }
+                contactEntries {
+                  type
+                  url
+                  id
+                }
               }
+            }
+          }
+        }
       `,
     });
     return {
@@ -145,10 +145,12 @@ const MyApp = (props: ExtendedAppProps) => {
         {googleTagCode ? (
           <>
             <Script
+              id="tagmngrParent"
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${googleTagCode}`}
             ></Script>
             <Script
+              id="tagMengrInner"
               dangerouslySetInnerHTML={{
                 __html: `
               window.dataLayer = window.dataLayer || [];
