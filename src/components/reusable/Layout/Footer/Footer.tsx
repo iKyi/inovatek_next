@@ -18,8 +18,15 @@ import { useContext } from "react";
 
 interface IFooter {}
 const Footer: React.FC<IFooter> = () => {
-  const { logoLight, footerText, socialEntries, contactEntries } =
-    useContext(GlobalContext);
+  const {
+    logoLight,
+    footerText,
+    socialEntries,
+    contactEntries,
+    companyDetails,
+    footerLegalLinks,
+    footerLinks,
+  } = useContext(GlobalContext);
 
   const logoData = getStrapiFullImageData(logoLight);
 
@@ -35,7 +42,7 @@ const Footer: React.FC<IFooter> = () => {
       <Container>
         <Grid container spacing={[2, 2, 4]}>
           <Grid xs={12} md={3} item>
-            <Box>
+            <Stack spacing={2}>
               <Link
                 href="/"
                 style={{
@@ -51,7 +58,16 @@ const Footer: React.FC<IFooter> = () => {
                   priority
                 />
               </Link>
-            </Box>
+              {companyDetails && (
+                <Box
+                  sx={{
+                    fontSize: "85%",
+                  }}
+                >
+                  <MarkdownParser>{companyDetails}</MarkdownParser>
+                </Box>
+              )}
+            </Stack>
           </Grid>
 
           {contactEntries && (
@@ -85,6 +101,21 @@ const Footer: React.FC<IFooter> = () => {
                       >
                         {item.url}
                       </Button>
+                    );
+                  })}
+                  {footerLinks.map((item: any) => {
+                    const { id, url, text } = item;
+
+                    return (
+                      <Link
+                        href={url}
+                        key={id}
+                        style={{
+                          color: "#fff",
+                        }}
+                      >
+                        {text}
+                      </Link>
                     );
                   })}
                 </Stack>
@@ -122,6 +153,36 @@ const Footer: React.FC<IFooter> = () => {
                   );
                 })}
               </Box>
+              {footerLegalLinks && footerLegalLinks.length > 0 ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "10px",
+                    mt: 2,
+                  }}
+                >
+                  {footerLegalLinks.map((item: any) => {
+                    const { image, id, url } = item;
+                    const fullImage = getStrapiFullImageData(image);
+                    return (
+                      <MUILink
+                        href={url}
+                        key={id}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <Image
+                          src={fullImage?.url}
+                          height={fullImage?.height}
+                          width={fullImage?.width}
+                          alt={`legal item no${id}`}
+                        />
+                      </MUILink>
+                    );
+                  })}
+                </Box>
+              ) : null}
             </Box>
           </Grid>
 

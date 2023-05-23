@@ -5,6 +5,7 @@ import { CacheProvider } from "@emotion/react";
 import type { AppProps } from "next/app";
 import { createContext } from "react";
 import Head from "next/head";
+import Script from "next/script";
 import { InovatekThemeProvider } from "@/lib/theme";
 import App from "next/app";
 import { gql } from "@apollo/client";
@@ -15,75 +16,98 @@ const getGlobalData = async () => {
   try {
     const resp = await client.query({
       query: gql`
-        query getGlobalData {
-          global {
-            data {
-              attributes {
-                siteName
-                favicon {
+      # Write your query or mutation here
+      query getGlobalData {
+                global {
                   data {
                     attributes {
-                      url
-                      width
-                      height
-                    }
-                  }
-                }
-                logoLight {
-                  data {
-                    attributes {
-                      url
-                      height
-                      width
-                    }
-                  }
-                }
-                logoDark {
-                  data {
-                    attributes {
-                      url
-                      height
-                      width
-                    }
-                  }
-                }
-                seo {
-                  metaTitle
-                  metaDescription
-                  shareImage {
-                    data {
-                      attributes {
+                      companyDetails
+                      footerLinks {
                         url
-                        height
-                        width
+                        id
+                        text
+                      }
+                      footerLegalLinks {
+                        url
+                        image {
+                          data {
+                            attributes {
+                              url
+                              height
+                              width
+                            }
+                          }
+                        }
+                        id
+                      }
+                      siteName
+                      googleTagCode
+                      messageSentText
+                      favicon {
+                        data {
+                          attributes {
+                            url
+                            width
+                            height
+                          }
+                        }
+                      }
+                      logoLight {
+                        data {
+                          attributes {
+                            url
+                            height
+                            width
+                          }
+                        }
+                      }
+                      logoDark {
+                        data {
+                          attributes {
+                            url
+                            height
+                            width
+                          }
+                        }
+                      }
+                      seo {
+                        metaTitle
+                        metaDescription
+                        shareImage {
+                          data {
+                            attributes {
+                              url
+                              height
+                              width
+                            }
+                          }
+                        }
+                      }
+                      
+                      footerText
+                      contactBoxImage {
+                        data {
+                          attributes {
+                            url
+                            height
+                            width
+                          }
+                        }
+                      }
+                      socialEntries {
+                        type
+                        url
+                        id
+                      }
+                      contactEntries {
+                        type
+                        url
+                        id
                       }
                     }
                   }
                 }
-                footerText
-                contactBoxImage {
-                  data {
-                    attributes {
-                      url
-                      height
-                      width
-                    }
-                  }
-                }
-                socialEntries {
-                  type
-                  url
-                  id
-                }
-                contactEntries {
-                  type
-                  url
-                  id
-                }
               }
-            }
-          }
-        }
       `,
     });
     return {
@@ -108,6 +132,8 @@ const MyApp = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { global } = pageProps;
 
+  const { googleTagCode } = global ?? {};
+
   return (
     <GlobalContext.Provider value={{ ...global }}>
       <CacheProvider value={emotionCache}>
@@ -115,6 +141,26 @@ const MyApp = (props: ExtendedAppProps) => {
           <link rel="shortcut icon" href={getStrapiMedia(global?.favicon)} />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
+
+        {googleTagCode ? (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagCode}`}
+            ></Script>
+            <Script
+              dangerouslySetInnerHTML={{
+                __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${googleTagCode}');
+            `,
+              }}
+            />
+          </>
+        ) : null}
+
         <SeoComp seo={global?.seo ?? {}} />
         <InovatekThemeProvider>
           <Component {...pageProps} />
