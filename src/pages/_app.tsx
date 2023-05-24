@@ -3,7 +3,7 @@ import createEmotionCache from "@/lib/theme/createEmotionCache";
 import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import type { AppProps } from "next/app";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import { InovatekThemeProvider } from "@/lib/theme";
@@ -11,6 +11,8 @@ import App from "next/app";
 import { gql } from "@apollo/client";
 import client from "@/lib/apolloClient";
 import SeoComp from "@/components/reusable/Seo";
+import { getConsentCookie } from "@/utils/consentCookie";
+import CookieConsentBar from "@/components/reusable/CookieConsentBar";
 
 const getGlobalData = async () => {
   try {
@@ -131,9 +133,18 @@ export const GlobalContext = createContext<Record<any, any>>({});
 const MyApp = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { global } = pageProps;
-
   const { googleTagCode } = global ?? {};
+  const [showCookieBar, setShowCookieBar] = useState(false);
+  const [wasConsented, setWaSConsented] = useState(false);
 
+  useEffect(() => {
+    const cookieStorageStatus = getConsentCookie();
+    if (cookieStorageStatus === null) {
+      setShowCookieBar(true);
+    } else if (cookieStorageStatus === "true") {
+      setWaSConsented(true);
+    }
+  }, []);
   return (
     <GlobalContext.Provider value={{ ...global }}>
       <CacheProvider value={emotionCache}>
@@ -142,7 +153,7 @@ const MyApp = (props: ExtendedAppProps) => {
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
 
-        {googleTagCode ? (
+        {googleTagCode && wasConsented ? (
           <>
             <Script
               id="tagmngrParent"
@@ -166,6 +177,7 @@ const MyApp = (props: ExtendedAppProps) => {
         <SeoComp seo={global?.seo ?? {}} />
         <InovatekThemeProvider>
           <Component {...pageProps} />
+          {showCookieBar && <CookieConsentBar />}
         </InovatekThemeProvider>
       </CacheProvider>
     </GlobalContext.Provider>
