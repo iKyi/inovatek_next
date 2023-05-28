@@ -41,8 +41,8 @@ const CookieConsentBar: React.FC<ICookieConsentBar> = () => {
               textAlign: "center",
             }}
           >
-            Acest site utilizeaza 'cookies', pentru a vedea felul in care le
-            utilizam puteti vizita{" "}
+            Acest site utilizeaza &apos;cookies&apos;, pentru a vedea felul in
+            care le utilizam puteti vizita{" "}
             <Link
               href={`/blog/termeni-si-conditii `}
               style={{ color: "inherit" }}
