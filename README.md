@@ -11,7 +11,7 @@ yarn dev
 # or
 pnpm dev
 
-Touch 1 for deploy to Vercel
+Touch 2 for deploy to Vercel
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
