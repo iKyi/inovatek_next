@@ -115,7 +115,7 @@ const Footer: React.FC<IFooter> = () => {
                     }}
                   >
                     <CommonIcon icon="whatsapp" />
-                    &nbsp; +40729255245
+                    &nbsp; +40729055245
                   </IconButton>
                   {footerLinks.map((item: any) => {
                     const { id, url, text } = item;
