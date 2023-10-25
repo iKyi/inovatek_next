@@ -1,7 +1,7 @@
 import useIsMobile from "@/lib/hooks/useIsMobile";
 import { getStrapiMedia } from "@/lib/media";
 import { GlobalContext } from "@/pages/_app";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Icon } from "@mui/material";
 import { useContext, useMemo, useState } from "react";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { motion } from "framer-motion";
@@ -11,7 +11,9 @@ import Image from "next/image";
 import HeaderMenuItems from "@/components/reusable/Layout/Header/HeaderMenuItems";
 import getStrapiFullImageData from "@/lib/getStrapiFullImageData";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import MobileMenu from "@/components/reusable/Layout/Header/MobileMenu";
+import CommonIcon from "@/components/reusable/Layout/SocialIcon";
 
 interface IHeader {}
 const Header: React.FC<IHeader> = () => {
@@ -89,6 +91,19 @@ const Header: React.FC<IHeader> = () => {
           </Link>
           {!isMobile && <HeaderMenuItems />}
           <Box>
+            <IconButton
+              component={Link}
+              rel="noreferrer"
+              target="_blank"
+              href="https://wa.me/0040729055245"
+              sx={{
+                color: "#fff",
+                textDecoration: "underline",
+              }}
+            >
+              <CommonIcon icon="whatsapp" />
+              0729 255 245
+            </IconButton>
             <Button
               variant="contained"
               color="primary"

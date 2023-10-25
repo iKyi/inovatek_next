@@ -72,7 +72,7 @@ const HomeIntroBox: React.FC<IHomeIntroBox> = ({ data }) => {
                   size="large"
                   variant="contained"
                   component={Link}
-                  href="/servicii"
+                  href="/portofoliu"
                   endIcon={<ArrowRightAltOutlined />}
                 >
                   {buttonText}

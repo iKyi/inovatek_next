@@ -103,6 +103,20 @@ const Footer: React.FC<IFooter> = () => {
                       </Button>
                     );
                   })}
+                  <IconButton
+                    component={Link}
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://wa.me/0040729055245"
+                    sx={{
+                      color: "#fff",
+                      textDecoration: "underline",
+                      fontSize: "90%",
+                    }}
+                  >
+                    <CommonIcon icon="whatsapp" />
+                    &nbsp; +40729255245
+                  </IconButton>
                   {footerLinks.map((item: any) => {
                     const { id, url, text } = item;
 
