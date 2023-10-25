@@ -107,7 +107,7 @@ const Footer: React.FC<IFooter> = () => {
                     component={Link}
                     rel="noreferrer"
                     target="_blank"
-                    href="https://wa.me/0040729055245"
+                    href="https://wa.me/40729055245"
                     sx={{
                       color: "#fff",
                       textDecoration: "underline",
