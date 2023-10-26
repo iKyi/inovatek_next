@@ -99,10 +99,11 @@ const Header: React.FC<IHeader> = () => {
               sx={{
                 color: "#fff",
                 textDecoration: "underline",
+                fontSize: "115%",
               }}
             >
               <CommonIcon icon="whatsapp" />
-              0729 055 245
+              0729.055.245
             </IconButton>
             <Button
               variant="contained"
