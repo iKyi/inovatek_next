@@ -76,7 +76,7 @@ const CalculatorForm: React.FC<ICalculatorForm> = ({ currentItems }) => {
           size="large"
           onClick={() => setShow(true)}
         >
-          Cere oferta pentru {currentItems.length} folii
+          Cere oferta pentru {currentItems.length} produse
         </Button>
       </Box>
     );

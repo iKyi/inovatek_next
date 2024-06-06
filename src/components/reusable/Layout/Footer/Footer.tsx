@@ -188,8 +188,8 @@ const Footer: React.FC<IFooter> = () => {
                       >
                         <Image
                           src={fullImage?.url}
-                          height={fullImage?.height}
-                          width={fullImage?.width}
+                          height={50}
+                          width={200}
                           alt={`legal item no${id}`}
                         />
                       </MUILink>
@@ -203,7 +203,7 @@ const Footer: React.FC<IFooter> = () => {
           <Grid xs={12} md={3} item>
             <Box>
               <FooterTitle>
-                <strong>Misiunea noastră</strong>
+                <strong>Resurse utile</strong>
               </FooterTitle>
               {footerText && (
                 <Box

@@ -14,9 +14,7 @@ interface IHomeIntroBox {
 const HomeIntroBox: React.FC<IHomeIntroBox> = ({ data }) => {
   const isMobile = useIsMobile();
   const { image, title, description, buttonText, rightImage } = data;
-
   const imageUrl = getStrapiMedia(image);
-
   const rightImageData = getStrapiFullImageData(rightImage);
 
   return (

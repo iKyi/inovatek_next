@@ -23,6 +23,8 @@ const getHomepageData = async () => {
                 nume
                 slug
                 descriere
+                pricePerElectricBox
+                order
                 images {
                   data {
                     attributes {
@@ -183,10 +185,15 @@ const getHomepageData = async () => {
         }
       `,
     });
+
+    const filteredProduse = resp?.data?.produses?.data
+      .filter((produs: any) => produs.attributes.pricePerElectricBox === 200)
+      .sort((a: any, b: any) => a.attributes.order - b.attributes.order);
+
     const Data = {
       blogPosts: resp?.data?.blogPosts?.data,
       servicii: resp?.data?.services?.data,
-      produse: resp?.data?.produses?.data,
+      produse: filteredProduse, //resp?.data?.produses?.data,
       homeDespreBox: resp.data.homeDespreBox.data.attributes,
       homeAdvantageBox: resp.data.homeAdvantageBox.data.attributes,
       homeIntroBox: resp.data.homeIntroBox.data.attributes,

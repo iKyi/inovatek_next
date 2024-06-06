@@ -1,8 +1,10 @@
 import ThemeDivider from "@/components/reusable/Layout/ThemeDivider";
+import FormCard from "@/components/Homepage/FormCard";
 import MarkdownParser from "@/components/reusable/MarkdownParser";
 import getStrapiFullImageData from "@/lib/getStrapiFullImageData";
 import { centerFlex } from "@/lib/theme/sxUtils";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import CommonIcon from "@/components/reusable/Layout/SocialIcon";
 import Image from "next/image";
 
 interface IHomeAdvantageBox {
@@ -32,7 +34,7 @@ const HomeAdvantageBox: React.FC<IHomeAdvantageBox> = ({ data }) => {
     >
       <Box
         sx={{
-          py: [7, 7, 15],
+          py: [3, 3, 3],
         }}
       >
         <Grid container justifyContent={"center"}>
@@ -44,6 +46,40 @@ const HomeAdvantageBox: React.FC<IHomeAdvantageBox> = ({ data }) => {
                   p: 1,
                 }}
               >
+                <br />
+                {title && (
+                  <Typography
+                    variant="h2"
+                    sx={{
+                      fontSize: [24, 24, 40],
+                    }}
+                    component="div"
+                  >
+                    <MarkdownParser>{title}</MarkdownParser>
+                  </Typography>
+                )}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: 4,
+                    mt: 4,
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    href="https://wa.me/40729055245"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      fontSize: "1rem",
+                      padding: "0.7rem 2rem",
+                    }}
+                  >
+                    <CommonIcon icon="whatsapp" /> &nbsp;Cere detalii
+                  </Button>
+                </Box>
                 <Image
                   src={imageUrl.url}
                   height={imageUrl.height}
@@ -64,18 +100,8 @@ const HomeAdvantageBox: React.FC<IHomeAdvantageBox> = ({ data }) => {
                 p: [2, 2, 4],
               }}
             >
-              {title && (
-                <Typography
-                  variant="h2"
-                  sx={{
-                    fontSize: [24, 24, 40],
-                  }}
-                  component="div"
-                >
-                  <MarkdownParser>{title}</MarkdownParser>
-                </Typography>
-              )}
-              <ThemeDivider />
+              <FormCard />
+
               {description && (
                 <Typography component="div" variant="body1" sx={{}}>
                   <MarkdownParser>{description}</MarkdownParser>
