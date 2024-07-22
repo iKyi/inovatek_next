@@ -17,7 +17,7 @@ const headerMenu: IHeaderMenuEntry[] = [
     url: "/portofoliu",
   },
   {
-    name: "Cât costă?",
+    name: "Produse și prețuri",
     url: "/calculator",
   },
   {

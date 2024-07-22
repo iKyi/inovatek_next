@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Divider, Slider, Typography } from "@mui/material";
+import { Divider, Slider, Typography, Button } from "@mui/material";
+import { useRouter } from "next/router";
 
 const FormCard: React.FC = () => {
   const [width, setWidth] = useState(700);
   const [height, setHeight] = useState(1450);
+  const router = useRouter();
 
   const calculateSquareMeters = () => {
     const squareMeters = (width / 1000) * (height / 1000);
@@ -36,6 +38,10 @@ const FormCard: React.FC = () => {
       installationAccessoriesCost,
       totalCost,
     };
+  };
+
+  const navigateToCalculator = () => {
+    router.push("/calculator"); // Navigate to /calculator page
   };
 
   const results = calculateSquareMeters();
@@ -107,6 +113,20 @@ const FormCard: React.FC = () => {
             Total general: €{results.totalCost.toFixed(2)} fără TVA
           </span>
         </Typography>
+        {/* Button to navigate to /calculator */}
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={navigateToCalculator}
+          sx={{
+            width: "100%", // Make the button full width
+            marginTop: "20px", // Add some space above the button
+          }}
+        >
+          Vezi lista completă de produse și prețuri
+        </Button>
+        <br />
         <br />
       </div>
     </div>
