@@ -151,30 +151,40 @@ const MyApp = (props: ExtendedAppProps) => {
         <Head>
           <link rel="shortcut icon" href={getStrapiMedia(global?.favicon)} />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-
-        {googleTagCode && wasConsented ? (
-          <>
-            <Script
-              id="tagmngrParent"
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagCode}`}
-            ></Script>
-            <Script
-              id="tagMengrInner"
-              dangerouslySetInnerHTML={{
-                __html: `
+          {googleTagCode && wasConsented ? (
+            <>
+              <Script
+                id="googleTagManager"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-K7LD98NS');
+                `,
+                }}
+              />
+              <Script
+                id="tagmngrParent"
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${googleTagCode}`}
+              ></Script>
+              <Script
+                id="tagMengrInner"
+                dangerouslySetInnerHTML={{
+                  __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${googleTagCode}');
             `,
-              }}
-            />
-            <Script
-              id="facebookPixel"
-              dangerouslySetInnerHTML={{
-                __html: `
+                }}
+              />
+              <Script
+                id="facebookPixel"
+                dangerouslySetInnerHTML={{
+                  __html: `
                 !function(f,b,e,v,n,t,s)
                 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                
                 n.callMethod.apply(n,arguments):n.queue.push(arguments)};                
@@ -186,18 +196,62 @@ const MyApp = (props: ExtendedAppProps) => {
                 fbq('init', '252672817364107');
                 fbq('track', 'PageView');
             `,
-              }}
-            />
-            <noscript>
-              <img
-                height="1"
-                width="1"
-                style={{ display: "none" }}
-                src="https://www.facebook.com/tr?id=252672817364107&ev=PageView&noscript=1"
+                }}
               />
-            </noscript>
-          </>
-        ) : null}
+              <Script
+                id="gtagReportConversion"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                  function gtag_SubmitContactForm(url) {
+                    var callback = function () {
+                      if (typeof(url) != 'undefined') {
+                        window.location = url;
+                      }
+                    };
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-11475582340/DjQrCLij8IkZEIT7_d8q',
+                        'value': 200.0,
+                        'currency': 'RON',
+                        'event_callback': callback
+                    });
+                    return false;
+                  }
+                  function gtag_WhatsApp(url) {
+                    var callback = function () {
+                      if (typeof(url) != 'undefined') {
+                        window.location = url;
+                      }
+                    };
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-11475582340/HBO0CJnL0cYZEIT7_d8q',
+                        'value': 100.0,
+                        'currency': 'RON',
+                        'event_callback': callback
+                    });
+                    return false;  
+                  }
+                `,
+                }}
+              />
+            </>
+          ) : null}
+        </Head>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K7LD98NS"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=252672817364107&ev=PageView&noscript=1"
+          />
+        </noscript>
 
         <SeoComp seo={global?.seo ?? {}} />
         <InovatekThemeProvider>
