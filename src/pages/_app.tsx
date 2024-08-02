@@ -151,40 +151,42 @@ const MyApp = (props: ExtendedAppProps) => {
         <Head>
           <link rel="shortcut icon" href={getStrapiMedia(global?.favicon)} />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
-          {googleTagCode && wasConsented ? (
-            <>
-              <Script
-                id="googleTagManager"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        </Head>
+        {googleTagCode && wasConsented ? (
+          <>
+            <Script
+              id="googleTagManager"
+              dangerouslySetInnerHTML={{
+                __html: `
+                (function(w,d,s,l,i)
+                {w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-K7LD98NS');
                 `,
-                }}
-              />
-              <Script
-                id="tagmngrParent"
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${googleTagCode}`}
-              ></Script>
-              <Script
-                id="tagMengrInner"
-                dangerouslySetInnerHTML={{
-                  __html: `
+              }}
+            />
+            <Script
+              id="tagmngrParent"
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagCode}`}
+            ></Script>
+            <Script
+              id="tagMengrInner"
+              dangerouslySetInnerHTML={{
+                __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${googleTagCode}');
             `,
-                }}
-              />
-              <Script
-                id="facebookPixel"
-                dangerouslySetInnerHTML={{
-                  __html: `
+              }}
+            />
+            <Script
+              id="facebookPixel"
+              dangerouslySetInnerHTML={{
+                __html: `
                 !function(f,b,e,v,n,t,s)
                 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                
                 n.callMethod.apply(n,arguments):n.queue.push(arguments)};                
@@ -196,12 +198,12 @@ const MyApp = (props: ExtendedAppProps) => {
                 fbq('init', '252672817364107');
                 fbq('track', 'PageView');
             `,
-                }}
-              />
-              <Script
-                id="gtagReportConversion"
-                dangerouslySetInnerHTML={{
-                  __html: `
+              }}
+            />
+            <Script
+              id="gtagReportConversion"
+              dangerouslySetInnerHTML={{
+                __html: `
                   function gtag_SubmitContactForm(url) {
                     var callback = function () {
                       if (typeof(url) != 'undefined') {
@@ -231,11 +233,10 @@ const MyApp = (props: ExtendedAppProps) => {
                     return false;  
                   }
                 `,
-                }}
-              />
-            </>
-          ) : null}
-        </Head>
+              }}
+            />
+          </>
+        ) : null}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-K7LD98NS"
