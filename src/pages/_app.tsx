@@ -151,6 +151,10 @@ const MyApp = (props: ExtendedAppProps) => {
         <Head>
           <link rel="shortcut icon" href={getStrapiMedia(global?.favicon)} />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <meta
+            name="google-site-verification"
+            content="sS53B9Nf1JqKsCdInvBum5kPFzgvi_YOYmI1S_yzx8U"
+          />
         </Head>
         {googleTagCode && wasConsented ? (
           <>
