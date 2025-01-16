@@ -9,7 +9,7 @@ const FormCard: React.FC = () => {
 
   const calculateSquareMeters = () => {
     const squareMeters = (width / 1000) * (height / 1000);
-    const pdlcCost = squareMeters * 166;
+    const pdlcCost = squareMeters * 149;
     let transformerCost;
 
     if (squareMeters <= 2) {

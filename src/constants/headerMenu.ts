@@ -5,25 +5,26 @@ interface IHeaderMenuEntry {
 
 const headerMenu: IHeaderMenuEntry[] = [
   {
-    name: "Prima pagină",
+    name: "Home",
     url: "/",
   },
   {
-    name: "Ce sunt foliile inteligente?",
+    name: "Despre folia inteligentă",
     url: "/companie",
   },
   {
-    name: "Unde le pot folosi?",
+    name: "Produse",
+    url: "/produse",
+  },
+  {
+    name: "Aplicații",
     url: "/portofoliu",
   },
   {
-    name: "Produse și prețuri",
+    name: "Calculator preț",
     url: "/calculator",
   },
-  {
-    name: "Ce tipuri de folie exista?",
-    url: "/produse",
-  },
+
   // {
   //   name: "Servicii",
   //   url: "/servicii",

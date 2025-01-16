@@ -10,6 +10,7 @@ import client from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 import { Container } from "@mui/material";
 import { NextPage } from "next/types";
+import Popup from "@/components/Popup";
 
 const getHomepageData = async () => {
   try {
@@ -236,6 +237,7 @@ const HomeIndexPage: NextPage<{ homeData: Record<any, any> }> = ({
         /> */}
         <HomeOfertaBox />
       </Container>
+      <Popup />
     </LayoutWrapper>
   );
 };

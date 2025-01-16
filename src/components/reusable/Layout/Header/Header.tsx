@@ -114,7 +114,7 @@ const Header: React.FC<IHeader> = () => {
                 textTransform: "none",
               }}
             >
-              Vreau si eu!
+              Contact
             </Button>
             {isMobile && <MobileMenu />}
           </Box>
