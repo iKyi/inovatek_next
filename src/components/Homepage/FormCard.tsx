@@ -22,7 +22,7 @@ const FormCard: React.FC = () => {
       transformerCost = { cost: 118, wattage: 200 };
     }
 
-    const installationCost = squareMeters * 31;
+    const installationCost = squareMeters * 41;
     const installationAccessoriesCost = squareMeters * 7.5;
     const totalCost =
       pdlcCost +

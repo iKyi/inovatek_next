@@ -61,7 +61,7 @@ const Popup: React.FC = () => {
       <Link href="https://wa.me/40729055245" passHref legacyBehavior>
         <a target="_blank" rel="noopener noreferrer">
           <Image
-            src="https://cms.inovatek.ro/uploads/promo_banner_big_02baae4171.png"
+            src="https://cms.inovatek.ro/uploads/promo_banner_3_b9d6dd5443.png"
             alt="Popup Image"
             layout="responsive"
             width={600}

@@ -33,7 +33,7 @@ const HomeIntroBox: React.FC<IHomeIntroBox> = ({ data }) => {
       buttonLink: "/portofoliu",
     },
     {
-      title: "<span class='bg-primary'>Devino partner Inovatek!</span>",
+      title: "<span class='bg-primary'>Devino partener Inovatek!</span>",
       description: `Căutăm parteneri profesioniști la nivel național pentru comercializarea și montajul foliei inteligente, tăiată la comandă și ușor de integrat în proiecte moderne.<br /><br />Colaborăm cu firme din domeniul tâmplăriei PVC, construcțiilor și arhitecturii.<br /><br />Contactează-ne telefonic, pe email sau prin formularul de contact de pe site! Suntem gata să construim împreună un parteneriat de succes.
       `,
       buttonText: "Aplică pentru parteneriat",
