@@ -237,7 +237,7 @@ const HomeIndexPage: NextPage<{ homeData: Record<any, any> }> = ({
         /> */}
         <HomeOfertaBox />
       </Container>
-      <Popup />
+      {/* <Popup /> */}
     </LayoutWrapper>
   );
 };
